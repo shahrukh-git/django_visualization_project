@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/bootstrap.css' %} ">
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %} ">
+
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        {% block content %} {% endblock content %}
+    </div>
+    
+    <script src="{% static 'myapp/js/jquery.js' %}"></script>
+    <script src="{% static 'myapp/js/popper.js' %}"></script>
+    <script src="{% static 'myapp/js/bootstrap.js' %}"></script>  
+
+    <script>
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");python maa
+        var raw = JSON.stringify({
+        "ticker": "RELIANCE"
+        });
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+        fetch("https://docker.api.srifintech.com/testassignment", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+    </script>
+    
+</body>
+</html>
